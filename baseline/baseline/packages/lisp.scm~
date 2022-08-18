@@ -1,0 +1,30 @@
+(define-module (baseline packages emacs)
+  #:use-module (guix download)
+  #:use-module (guix git-download)
+  #:use-module (guix packages)
+  #:use-module (guix build-system r)
+  #:use-module (guix build-system emacs)
+  #:use-module (gnu packages web-browsers)
+  #:use-module ((guix licenses) #:prefix license:))
+
+(define-public nyxt-master
+  (let ((commit "5a514f66cad728772d66fd578379197d43880c41"))
+    (package
+     (name "nyxt-master")
+     (inherit nyxt)
+     (version "git")
+     (source (origin
+	      (method git-fetch)
+	      (uri (git-reference
+		    (url "https://github.com/atlas-engineer/nyxt")
+		    (commit commit)))
+	      (file-name (git-file-name name version))
+	      (sha256
+	       (base32
+		"12l7ir3q29v06jx0zng5cvlbmap7p709ka3ik6x29lw334qshm9b"))))
+     ;; (build-system r-build-system)
+     ;; (home-page "https://github.com/atlas-engineer/nyxt")
+     ;; (synopsis "temp")
+     ;; (description "temp")
+     ;; (license #f)
+     )))

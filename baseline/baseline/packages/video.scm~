@@ -1,0 +1,8 @@
+(define-module (baseline packages video)
+  #:use-module (guix packages)
+  #:use-module (gnu packages base)
+  #:use-module (guix git-download)
+  #:use-module (guix build utils)
+  #:use-module (guix build-system waf)
+  #:use-module (gnu packages image-viewers)
+  #:use-module ((guix licenses) #:prefix license:))

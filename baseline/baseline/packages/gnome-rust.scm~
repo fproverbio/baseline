@@ -1,0 +1,31 @@
+(define-module (baseline packages gnome-rust)
+  #:use-module (gnu packages)
+  #:use-module (guix packages)
+  #:use-module (gnu packages crates-gtk)
+  #:use-module (gnu packages crates-io)
+  #:use-module (guix build-system cargo)
+  #:use-module (guix download)
+  #:use-module ((guix licenses) #:prefix license:))
+
+(define-public rust-gnome-randr-0.1
+  (package
+    (name "rust-gnome-randr")
+    (version "0.1.1")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (crate-uri "gnome-randr" version))
+        (file-name (string-append name "-" version ".tar.gz"))
+        (sha256
+          (base32 "1xbgwpq6fjp4767fgi8rnsw5vy4mvj2b5xrzm3cd8sdyr78kb40r"))))
+    (build-system cargo-build-system)
+    (arguments
+      `(#:cargo-inputs
+        (("rust-bitflags" ,rust-bitflags-1)
+         ("rust-dbus" ,rust-dbus-0.9)
+         ("rust-structopt" ,rust-structopt-0.3))))
+    (home-page "https://github.com/maxwellainatchi/gnome-randr-rust")
+    (synopsis "A reimplementation of xrandr for Gnome on Wayland")
+    (description
+      "This package provides a reimplementation of xrandr for Gnome on Wayland")
+    (license license:expat)))
